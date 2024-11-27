@@ -1,16 +1,21 @@
-import { Application, Assets, Sprite, Text } from "pixi.js";
+import { Application, Assets, Graphics, Sprite, Text } from "pixi.js";
 
 const app = new Application();
+
+let toggleEnabled = false;
 
 await app.init({
   background: "#1099bb",
   resizeTo: window,
+  accessibilityOptions: {
+    enabledByDefault: toggleEnabled,
+    debug: true,
+  }
 });
 
 document.body.appendChild(app.canvas);
 
 const texture = await Assets.load("https://pixijs.com/assets/bunny.png").then((texture) => {
-  app.renderer.accessibility.setAccessibilityEnabled();
   return texture;
 });
 
@@ -107,3 +112,35 @@ paragraphText.accessibleType = "p";
 app.stage.addChild(titleText);
 app.stage.addChild(divText);
 app.stage.addChild(paragraphText);
+
+// Make an accessible toggle button that toggles the accessibility of the app
+// This should just be a standard HTML button with an accessible label
+const accessibleToggleButton = document.createElement("button");
+accessibleToggleButton.textContent = toggleEnabled ? "Accessibility" : "No Accessibility";
+accessibleToggleButton.style.cssText = "padding: 10px; margin: 10px; font-size: 16px; position: absolute; top: 0; left: 0;";
+accessibleToggleButton.addEventListener("click", () => {
+  toggleEnabled = !toggleEnabled;
+  app.renderer.accessibility.setAccessibilityEnabled(toggleEnabled);
+  if(toggleEnabled) {
+    accessibleToggleButton.textContent = "Accessibility";
+  } else {
+    accessibleToggleButton.textContent = "No Accessibility";
+  }
+});
+
+document.body.appendChild(accessibleToggleButton);
+
+let bunnySpeed = 1;
+
+const bunnyInterval = setInterval(() => {
+  bunny.x += bunnySpeed;
+  if(bunny.x > app.screen.width || bunny.x < 0) {
+    bunnySpeed *= -1;
+  }
+}, 16);
+
+setTimeout(() => {
+  bunny.destroy();
+  app.stage.removeChild(bunny);
+  clearInterval(bunnyInterval);
+}, 5000)
