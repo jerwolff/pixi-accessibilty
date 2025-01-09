@@ -2,18 +2,18 @@ import { Application, Assets, Graphics, Sprite, Text } from "pixi.js";
 
 const app = new Application();
 
-let toggleEnabled = false;
+let toggleEnabled = true;
 
 await app.init({
   background: "#1099bb",
   resizeTo: window,
   accessibilityOptions: {
     enabledByDefault: toggleEnabled,
-    debug: true,
+    deactivateOnMouseMove: false,
   }
 });
 
-document.body.appendChild(app.canvas);
+document.body.appendChild(app.canvas); 
 
 const texture = await Assets.load("https://pixijs.com/assets/bunny.png").then((texture) => {
   return texture;
@@ -33,6 +33,7 @@ function createBunny(x: number, y: number) {
   
   bunnySprite.accessible = true;
   bunnySprite.accessibleHint = `Bunny ${bunnyNum}`;
+  bunnySprite.accessibleType = "button";
   bunnySprite.interactive = true;
   
   bunnySprite.on("click", () => {
