@@ -60,7 +60,7 @@ this.accessibleType = "button";
 
 - **accessible:** Set to true to enable accessibility for the object.
 - **accessibleHint:** Provides a descriptive hint for screen readers.
-- **accessibleType:** Specifies the type of interactive element (e.g., "button").
+- **accessibleType:** Specifies the type of HTML element (e.g., "button").
 
 #### Header Component (`src/components/header.ts`)
 
