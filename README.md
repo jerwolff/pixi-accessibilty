@@ -77,9 +77,3 @@ this.accessibleText = this.text;
 
 - **Keyboard Navigation:** Use the Tab key to navigate through interactive elements. Observe how focus changes and how accessible hints are read by screen readers. These interactive elements also accept keyboard inputs such as enter/space to activate click events.
 - **Screen Reader:** Turn on a screen reader (e.g., NVDA, VoiceOver, JAWS) to hear the accessible information associated with each element. Verify that headings, buttons, and other interactive components are properly described.
-
-## Further Development
-
-- Explore other accessibility features provided by PixiJS.
-- Implement ARIA attributes for more complex scenarios.
-- Thoroughly test with different screen readers and assistive technologies.
