@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "gsap": "^3.11.4",
-    "pixi.js": "https://pkg.csb.dev/pixijs/pixijs/commit/34cecf8c/pixi.js"
+    "pixi.js": "^8.7.3"
   }
 }
